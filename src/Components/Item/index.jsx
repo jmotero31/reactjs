@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import './styles.css'
+import ItemCount from '../../Components/ItemCount'
 
 const Item = ({producto}) => {
 
@@ -16,8 +17,10 @@ return (
   <ListGroup className="list-group-flush">
     <ListGroupItem>{producto.graduacion}</ListGroupItem>
     <ListGroupItem>{producto.premio}</ListGroupItem>
+    
   </ListGroup>
   <Button variant="primary">Ver más</Button>
+  <ItemCount stock={20} onAdd={'10'} initial={1} />
 </Card>
   )
 }
