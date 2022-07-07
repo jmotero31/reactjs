@@ -23,6 +23,9 @@ const [contar, setContar] = useState(inicial) //hook estados guardados
         <button onClick={()=>{onAdd(contar); resetear()}}>Agregar al Carrito</button>
         <button onClick={resetear}>Resetear</button>
     </div>
+
+
+
   )
 }
 
