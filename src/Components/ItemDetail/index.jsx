@@ -1,8 +1,23 @@
 import React from 'react'
-import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { useState } from 'react'
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import ItemCount from '../../Components/ItemCount'
 
 const ItemsDetail = ({producto}) => {
- console.log(producto)
+  const navigate = useNavigate()
+
+  producto.stock = 15
+  const [cantidad, setCantidad] = useState(0)
+
+  const confirmacion = (cant) =>{
+    setCantidad (cant)
+  }
+  const terminar = () =>{
+    navigate('/cart')
+  }
+  console.log(cantidad)
+  
   return (
     <div key={producto.id} className='estilo1'> 
     <Card style={{ width: '18rem' }}>
@@ -17,8 +32,12 @@ const ItemsDetail = ({producto}) => {
         <ListGroupItem>{producto.category}</ListGroupItem>
         <ListGroupItem>{producto.price}</ListGroupItem>
       </ListGroup>
-      {/* <Button  variant="primary">Ver más</Button> */}
-      {/* <ItemCount inicial={1} stock={10} onAdd={1}/> */}
+
+      {!cantidad ?
+        <ItemCount agregar={confirmacion} stock={producto.stock}/>
+        :
+        <button onClick={terminar}>Terminar Compra</button>
+      }
     </Card>
   </div>
   )

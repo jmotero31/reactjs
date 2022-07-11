@@ -2,30 +2,36 @@ import React from 'react'
 import { useState } from 'react'
 import './styles.css'
 
-const ItemCount = ({inicial, stock, onAdd}) => {
-const [contar, setContar] = useState(inicial) //hook estados guardados
+const ItemCount = ({agregar, stock}) => {
+const [contar, setContar] = useState(1) //hook estados guardados
+
 
     function sumar() {
     contar < stock ? setContar(contar + 1) : alert('Stock disponible ' + stock)
   }
     const restar =()=>{
-      contar > inicial ? setContar(contar - 1): alert('Compra mínima es ' + inicial) 
+      contar > 1 ? setContar(contar - 1): alert('Compra mínima es 1') 
     }
     const resetear = ()=>{
-      setContar(inicial)
+      setContar(1)
     }
     
+    const confirmar = () =>{
+      if(contar <= stock){
+        agregar(contar)
+      }
+      else{
+        alert("Lo sentimos solamente tenemos " + stock)
+      }
+    }
   return (
     <div>
         <p >{contar}</p>
         <button onClick={restar}>-</button>
         <button onClick={sumar}>+</button>
-        <button onClick={()=>{onAdd(contar); resetear()}}>Agregar al Carrito</button>
+        <button onClick={()=>{confirmar(); resetear()}}>Agregar al Carrito</button>
         <button onClick={resetear}>Resetear</button>
     </div>
-
-
-
   )
 }
 

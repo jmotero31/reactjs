@@ -29,9 +29,9 @@ return (
         <ListGroupItem>{producto.price}</ListGroupItem>
         
       </ListGroup>
-      <Button  variant="primary">Ver más</Button>
+      {/* <Button  variant="primary">Ver más</Button>
 
-      <ItemCount inicial={1} stock={10} onAdd={1}/>
+      <ItemCount inicial={1} stock={10} onAdd={1}/> */}
     </Card>
     
   </div>
