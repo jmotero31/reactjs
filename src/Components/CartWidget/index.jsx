@@ -12,7 +12,6 @@ const {cart} = useContext(Shop)
     <div>
       <IoMdCart className='tamano'/>
       {cart.length && <span>({cart.length})</span>}
-
     </div>
   )
 }
