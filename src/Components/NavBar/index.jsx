@@ -1,10 +1,16 @@
-import React from 'react';
+// import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+// import { Shop } from '../../Contex/ShopContext';
 import CardWidget from '../CartWidget';
 import './styles.css';
 
 
+
 const NavBar = () =>{
+
+// const {estadoA} = useContext(Shop)
+// console.log(estadoA)
+
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light nav">
 <div className="container-fluid">
@@ -26,7 +32,13 @@ const NavBar = () =>{
               <li>
                 <Link to="/category/men's clothing" className='nav-link a'>Ropa de Hombre </Link>
               </li>
-              <CardWidget/>
+              {/* <li>
+                <Link to="" className='nav-link a'>{estadoA} </Link>
+              </li> */}
+              <li>
+                <Link to='/cart'><CardWidget/></Link>
+              </li>
+             
             </ul>
           </div>
   </div>
