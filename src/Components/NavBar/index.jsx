@@ -32,13 +32,9 @@ const NavBar = () =>{
               <li>
                 <Link to="/category/men's clothing" className='nav-link a'>Ropa de Hombre </Link>
               </li>
-              {/* <li>
-                <Link to="" className='nav-link a'>{estadoA} </Link>
-              </li> */}
-              <li>
-                <Link to='/cart'><CardWidget/></Link>
-              </li>
              
+                <CardWidget/>
+              
             </ul>
           </div>
   </div>
