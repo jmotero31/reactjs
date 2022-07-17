@@ -12,7 +12,7 @@ const {cart} = useContext(Shop)
   return (
     <Link to='/cart' className='a'>
       <IoMdCart className='tamano'/>
-      {cart.length && <p>({cart.length})</p>}
+      {cart.length && <span>{cart.length}</span>}
     </Link>
   )
 }

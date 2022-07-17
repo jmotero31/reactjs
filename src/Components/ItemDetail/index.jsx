@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import ItemCount from '../../Components/ItemCount'
 import { Shop } from '../../Contex/ShopContext'
+
 
 const ItemsDetail = ({producto}) => {
   const navigate = useNavigate()
@@ -21,7 +22,6 @@ const ItemsDetail = ({producto}) => {
   const terminar = () =>{
     agregarProducto(producto, cantidad)
     navigate('/cart')
-
   }
   console.log(cantidad)
   

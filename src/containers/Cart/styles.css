@@ -1,0 +1,18 @@
+.estilo{
+    margin-top: 2rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+.ancho{
+    width: 70% !important;
+}
+.color1{
+    background-color: rgb(46, 46, 46);
+    color: beige;
+}
+.color2{
+    background-color: rgb(78, 77, 77);
+    color: rgb(230, 230, 230);
+    font-weight: bold;
+    
+}

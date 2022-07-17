@@ -47,8 +47,6 @@ const ItemsListContainer = ({greeting}) => {
  console.log(productos)
   return (
     <div className='formato'>
-        {/* <ItemCount inicial={1} stock={10} onAdd={onAdd}/> */}
-        {/* <p className='color'>{greeting}</p> */}
         {productos.length !== 0 ?
           <ItemList productos={productosFiltrados}/> 
         :

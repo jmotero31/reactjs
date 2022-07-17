@@ -11,7 +11,6 @@ const ItemList = ({productos}) => {
       {productos.map(prod=>{
       return <Item key={prod.idProducto} producto={prod}/>
       } )}
-      
     </div>
   )
 }
