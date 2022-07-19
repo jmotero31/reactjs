@@ -47,7 +47,7 @@ const volver =()=>{
             </thead>
             {cart.map(prod =>{
               return <tr key={prod.id} className='color2'>
-                <td>{prod.id}</td>
+                <td>{prod.cant}</td>
                 <td>{prod.title}</td>
                 <td>{prod.price}</td>
                 <td>{prod.cant * prod.price}</td>
