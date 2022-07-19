@@ -45,13 +45,14 @@ const volver =()=>{
                 <th>Quitar</th>
               </tr>
             </thead>
-            {cart.map(prod =>{
+            {cart.map(prod => {
               return <tr key={prod.id} className='color2'>
                 <td>{prod.cant}</td>
                 <td>{prod.title}</td>
                 <td>{prod.price}</td>
                 <td>{prod.cant * prod.price}</td>
                 <td><button onClick={() => remover(prod.id)} style={{color: 'beige'}}> X </button></td>
+
               </tr>
             })
             }
@@ -64,8 +65,6 @@ const volver =()=>{
               </tr>
             </tbody>
             </Table>
-            
-
             </>
           :
           <>

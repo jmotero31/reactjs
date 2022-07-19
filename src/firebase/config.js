@@ -4,9 +4,10 @@ import {getFirestore} from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDQqpkt3_DU8g0VLxhkMfpoZiV9anZ-XlI",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "proyecto1-97a93.firebaseapp.com",
   projectId: "proyecto1-97a93",
   storageBucket: "proyecto1-97a93.appspot.com",

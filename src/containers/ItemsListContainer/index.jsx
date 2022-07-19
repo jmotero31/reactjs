@@ -4,38 +4,48 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../../Components/ItemList'
 import './styles.css'
-
-import { collection, query, getDocs } from "firebase/firestore";
-import { db } from '../../firebase/config'
+// import { collection, query, getDocs } from "firebase/firestore";
+// import { db } from '../../firebase/config'
+import useFirebaseProductos from '../../Components/Hooks/useFirebaseProductos'
 
 const ItemsListContainer = ({greeting}) => {
-  const [productos, setProductos] = useState([])
-  const [productosFiltrados, setProductosFiltrados] = useState([])
+  const [productosFire, cargando, erro] = useFirebaseProductos()
+  // const [productos, setProductos] = useState(productosFire)
+  const [productosFiltrados, setProductosFiltrados] = useState(productosFire)
   const parametro = useParams()
-  console.log(parametro)
+  // const [valor, setValor] = useState(0)
+  const productos = productosFire
+  // console.log(parametro)
+  console.log(productosFire, cargando, erro)
 
 
-  useEffect(()=>{
-   const producto = async () => {
-     try {
-      const q = query(collection(db, "productos"));
-      const querySnapshot = await getDocs(q);
-      const datos = []
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
-        datos.push({id: doc.id, ...doc.data()})
-      });
-      //  const respuesta = await fetch('https://fakestoreapi.com/products'); //fetch promesas '/data/productos.json'
-      //  const datos = await respuesta.json()
-       setProductos(datos)
-       setProductosFiltrados(datos)
-     } catch (error) {
-       console.log("Hubo un error en la consulta");
-       console.log(error)
-     }
-   }
-    producto()
- },[] ) 
+//   useEffect(()=>{
+//   //  const producto = async () => {
+//   //    try {
+//   //     const q = query(collection(db, "productos"));
+//   //     const querySnapshot = await getDocs(q);
+//   //     const datos = []
+//   //     querySnapshot.forEach((doc) => {
+//   //       // console.log(doc.id, " => ", doc.data());
+//   //       datos.push({id: doc.id, ...doc.data()})
+//   //     });
+//   //     //  const respuesta = await fetch('https://fakestoreapi.com/products'); //fetch promesas '/data/productos.json'
+//   //     //  const datos = await respuesta.json()
+//   //      setProductos(datos)
+//   //      setProductosFiltrados(datos)
+//   //    } catch (error) {
+//   //      console.log("Hubo un error en la consulta");
+//   //      console.log(error)
+//   //    }
+//   //  }
+//   //   producto()
+//   // if(valor < 1){
+//        console.log(productosFire)
+//       setProductos(productosFire)
+//       setProductosFiltrados(productosFire)
+//   //     setValor(2)
+//   // }
+//  }, []) 
 
  useEffect(() => {
 
@@ -54,10 +64,11 @@ const ItemsListContainer = ({greeting}) => {
   //   alert('Valor ' + contar) 
 
   // }
- console.log(productos)
+ console.log(productos.length)
   return (
     <div className='formato'>
-        {productos.length !== 0 ?
+        {/* {productos.length !== 0 ? */}
+        {cargando !== true ?
           <ItemList productos={productosFiltrados}/> 
         :
         <p>Cargando ...</p>
