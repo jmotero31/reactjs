@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React  from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
@@ -10,10 +10,11 @@ import { Shop } from '../../Contex/ShopContext'
 const ItemsDetail = ({producto}) => {
   const navigate = useNavigate()
 
-  producto.stock = 15
+  // console.log(producto.stock)
+  
   const [cantidad, setCantidad] = useState(0)
-
   const {agregarProducto} = useContext (Shop)
+  
 
 
   const confirmacion = (cant) =>{
@@ -37,7 +38,8 @@ const ItemsDetail = ({producto}) => {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroupItem>{producto.category}</ListGroupItem>
-        <ListGroupItem>{producto.price}</ListGroupItem>
+        <ListGroupItem>Precio: {producto.price}</ListGroupItem>
+        <ListGroupItem>Stock disponible: {producto.stock}</ListGroupItem>
       </ListGroup>
 
       {!cantidad ?

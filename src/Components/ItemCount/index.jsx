@@ -4,6 +4,7 @@ import './styles.css'
 
 const ItemCount = ({agregar, stock}) => {
 const [contar, setContar] = useState(1) //hook estados guardados
+ 
 
 
     function sumar() {
@@ -26,7 +27,7 @@ const [contar, setContar] = useState(1) //hook estados guardados
     }
   return (
     <div>
-        <p >{contar}</p>
+        <p >Cantidad: {contar}</p>
         <button onClick={restar}>-</button>
         <button onClick={sumar}>+</button>
         <button onClick={()=>{confirmar(); resetear()}}>Agregar al Carrito</button>

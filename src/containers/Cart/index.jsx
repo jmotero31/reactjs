@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { Shop } from '../../Contex/ShopContext'
 import Table from 'react-bootstrap/Table'
 import './styles.css'
+import pedido from '../../firebase/pedido'
+import orden from '../../firebase/orden'
 
 const Cart = () => {
   const {cart} = useContext(Shop)
@@ -28,6 +30,15 @@ console.log(total)
 
 const volver =()=>{
   navigate('/')
+}
+const comprar = async() =>{
+  const pedidoConfirmado = pedido("Juan Martin", "Otero", "Calle 56", "joero@live.com.ar", "2214354140", cart, total)
+ //agregar un modal para completar los datos del comparador 
+//  console.log(pedidoConfirmado)
+
+ orden(cart, pedidoConfirmado)
+
+//  const docRef = await addDoc(collection(db,"orden"),pedidoConfirmado)
 }
 
   return (
@@ -65,6 +76,7 @@ const volver =()=>{
               </tr>
             </tbody>
             </Table>
+            <button onClick={()=>{comprar()}}>Comprar</button>
             </>
           :
           <>
