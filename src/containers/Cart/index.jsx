@@ -7,12 +7,15 @@ import Table from 'react-bootstrap/Table'
 import './styles.css'
 import pedido from '../../firebase/pedido'
 import orden from '../../firebase/orden'
+import ContactFrom from '../../contactForm/contactForm'
+
 
 const Cart = () => {
   const {cart} = useContext(Shop)
   const {remover} = useContext(Shop)
   const {setCart} = useContext(Shop)
   const[total, setTotal] = useState(0)
+  const [confirmar, SetConfirmar] = useState(false)
 
   const navigate = useNavigate()
   
@@ -32,6 +35,7 @@ const volver =()=>{
   navigate('/')
 }
 const comprar = async() =>{
+  SetConfirmar(true)
   const pedidoConfirmado = pedido("Juan Martin", "Otero", "Calle 56", "joero@live.com.ar", "2214354140", cart, total)
  //agregar un modal para completar los datos del comparador 
 //  console.log(pedidoConfirmado)
@@ -77,6 +81,7 @@ const comprar = async() =>{
             </tbody>
             </Table>
             <button onClick={()=>{comprar()}}>Comprar</button>
+            {confirmar && <ContactFrom></ContactFrom>}
             </>
           :
           <>

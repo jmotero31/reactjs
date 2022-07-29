@@ -1,4 +1,5 @@
 import { useState } from "react"
+// import { helpHttp } from "../../utils/helpHttp"
 
 export const useForm = (initialForm, validateForm) => {
     const[form, setForm]= useState(initialForm)
@@ -7,9 +8,13 @@ export const useForm = (initialForm, validateForm) => {
     const [response, setResponse] = useState(null)
 
     //cambio de valores
-
+  
     const handleChange = (e) =>{
         const{name, value} = e.target
+        setForm({
+            ...form,
+            [name]: value,
+        })
     }
 
     const handleBlur = (e) =>{
@@ -17,10 +22,24 @@ export const useForm = (initialForm, validateForm) => {
         setErros(validateForm(form))
     }
 
-    const handleSubmit = (e) =>{}
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        setErros(validateForm(form))
+
+        if(Object.keys(errors).length === 0){
+            alert("Se envia pedido")
+            setLoading(true)
+            // helpHttp()
+            //     .post()
+            //     .then((res) => {})
+
+        }else{
+            return
+        }
+    }
 
     return{
-        form: form,
+        form,
         errors,
         loading,
         response,

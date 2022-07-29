@@ -1,12 +1,14 @@
-import { useForm } from "../Hooks/useForm"
+
+import { useForm } from '../Components/Hooks/useForm'
 import './styles.css'
 
 const initialForm = {
-  name:"",
-  email:"",
-  subject:"",
-  comments:""
-}
+  name: "",
+  email: "",
+  emaildos: "",
+  subject: "",
+  comments: "",
+};
 
 const validateForm = (form) =>{
   let errors={}
@@ -16,14 +18,44 @@ const validateForm = (form) =>{
 
   if(!form.name.trim()){
     errors.name = "El campo 'Nombre' es requerido"
+  }else if(!regexName.test(form.name.trim())){
+    errors.name ="El campo 'Nombre'  solo acepta letras y espacios en blanco"
+  }else if(form.name.trim().lenght > 2){
+    errors.name = "El campo 'Nombre' debe tener más de dos letras"
   }
 
+  if(!form.email.trim() && form.email === form.email2){
+    errors.email = "El campo 'Correo' es requerido"
+  }else if(!regexEmail.test(form.email.trim())){
+    errors.email = "El campo 'Correo' es incorrecto"
+  }
+  
+  if(form.email !== form.emaildos){
+    errors.emaildos = "Verificar correos"
+  }
+
+  if(!form.subjet.trim()){
+    errors.subjet = "El campo 'Asunto' es requerido"
+  }
+
+  if(!form.comments.trim()){
+    errors.comments = "El campo 'Comentario' es requerido"
+  }else if(!regexComments.test(form.comments.trim())){
+    errors.comments = "El campo 'Comentario' no debe exceder los 255 cararteres"
+  }
 
   return errors
 }
 
 const ContactFrom = () => {
-    const {form, errors,loading,response,handleChange,handleBlur,handleSubmit} = useForm(initialForm, validateForm)
+    const {form, 
+        errors,
+        loading,
+        response,
+        handleChange,
+        handleBlur,
+        handleSubmit
+    } = useForm(initialForm, validateForm)
 
 
   return (
@@ -41,7 +73,7 @@ const ContactFrom = () => {
             />
             {errors.name && <p>{errors.name}</p>}
             <input 
-            type="text" 
+            type="email" 
             name="email"  
             placeholder="Escribe tu correo" 
             onBlur={handleBlur} 
@@ -50,6 +82,18 @@ const ContactFrom = () => {
             required
             />
             {errors.email && <p>{errors.email}</p>}
+
+            <input 
+            type="email" 
+            name="emaildos"  
+            placeholder="Vuelva a escribir su 'Correo'" 
+            onBlur={handleBlur} 
+            onChange={handleChange} 
+            value={form.emaildos} 
+            required
+            />
+            {errors.emaildos && <p>{errors.emaildos}</p>}
+
             <input 
             type="text" 
             name="subject"  
@@ -62,13 +106,13 @@ const ContactFrom = () => {
             {errors.subject && <p>{errors.subject}</p>}
             <textarea 
             type="text" 
-            name="commets"  
+            name="comments" 
             cols="50"
             rows="5"
             placeholder="Escribe tus comentarios" 
             onBlur={handleBlur} 
             onChange={handleChange} 
-            value={form.comments} 
+            value = {form.comments}
             required
             />
             {errors.comments && <p>{errors.comments}</p>}

@@ -10,6 +10,7 @@ import Cart from './containers/Cart';
 import ShopProvider from './Contex/ShopContext';
 
 
+
 function App() {
   return (
     <ShopProvider>
