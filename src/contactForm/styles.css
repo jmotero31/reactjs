@@ -1,4 +1,23 @@
-p {
+.validacion {
     font-weight: bold;
     color: brown;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem;
+}
+.ingreso{
+    margin: .5rem;
+}
+.boton{
+    width: 30%;
+   
+}
+.contenedor{
+    margin-top: 3rem;
+    margin-left: 3rem;
+    width: 50%;
+    background-color:rgb(8, 150, 27);
 }

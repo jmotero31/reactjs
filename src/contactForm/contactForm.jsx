@@ -13,20 +13,20 @@ const initialForm = {
 const validateForm = (form) =>{
   let errors={}
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/
-  let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/
+  let regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
   let regexComments = /^.{1,255}$/
 
-  if(!form.name.trim()){
+  if(!form.name){
     errors.name = "El campo 'Nombre' es requerido"
-  }else if(!regexName.test(form.name.trim())){
+  }else if(!regexName.test(form.name)){
     errors.name ="El campo 'Nombre'  solo acepta letras y espacios en blanco"
-  }else if(form.name.trim().lenght > 2){
+  }else if(form.name.length < 4){
     errors.name = "El campo 'Nombre' debe tener más de dos letras"
   }
 
-  if(!form.email.trim() && form.email === form.email2){
+  if(!form.email){
     errors.email = "El campo 'Correo' es requerido"
-  }else if(!regexEmail.test(form.email.trim())){
+  }else if(!regexEmail.test(form.email)){
     errors.email = "El campo 'Correo' es incorrecto"
   }
   
@@ -34,13 +34,13 @@ const validateForm = (form) =>{
     errors.emaildos = "Verificar correos"
   }
 
-  if(!form.subjet.trim()){
-    errors.subjet = "El campo 'Asunto' es requerido"
+  if(!form.subject){
+    errors.subject = "El campo 'Asunto' es requerido"
   }
 
-  if(!form.comments.trim()){
+  if(!form.comments){
     errors.comments = "El campo 'Comentario' es requerido"
-  }else if(!regexComments.test(form.comments.trim())){
+  }else if(!regexComments.test(form.comments)){
     errors.comments = "El campo 'Comentario' no debe exceder los 255 cararteres"
   }
 
@@ -58,11 +58,14 @@ const ContactFrom = () => {
     } = useForm(initialForm, validateForm)
 
 
+
+
   return (
-    <div>
+    <div className='contenedor'>
         <h2>Formulario de contacto</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='formulario'>
             <input 
+            className='ingreso'
             type="text" 
             name="name"  
             placeholder="Escribe tu nombre" 
@@ -71,8 +74,9 @@ const ContactFrom = () => {
             value={form.name} 
             required
             />
-            {errors.name && <p>{errors.name}</p>}
+            {errors.name && <p className='validacion'>{errors.name}</p>}
             <input 
+            className='ingreso'
             type="email" 
             name="email"  
             placeholder="Escribe tu correo" 
@@ -81,9 +85,10 @@ const ContactFrom = () => {
             value={form.email} 
             required
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <p className='validacion'>{errors.email}</p>}
 
             <input 
+            className='ingreso'
             type="email" 
             name="emaildos"  
             placeholder="Vuelva a escribir su 'Correo'" 
@@ -92,9 +97,10 @@ const ContactFrom = () => {
             value={form.emaildos} 
             required
             />
-            {errors.emaildos && <p>{errors.emaildos}</p>}
+            {errors.emaildos && <p className='validacion'>{errors.emaildos}</p>}
 
             <input 
+            className='ingreso'
             type="text" 
             name="subject"  
             placeholder="Escribe tu asunto" 
@@ -103,8 +109,9 @@ const ContactFrom = () => {
             value={form.subject} 
             required
             />
-            {errors.subject && <p>{errors.subject}</p>}
+            {errors.subject && <p className='validacion'>{errors.subject}</p>}
             <textarea 
+            className='ingreso'
             type="text" 
             name="comments" 
             cols="50"
@@ -115,8 +122,8 @@ const ContactFrom = () => {
             value = {form.comments}
             required
             />
-            {errors.comments && <p>{errors.comments}</p>}
-            <input type="submit" value="Enviar"/>
+            {errors.comments && <p className='validacion'>{errors.comments}</p>}
+            <button className='ingreso boton'>Terminar</button>
         </form>
     </div>
   )

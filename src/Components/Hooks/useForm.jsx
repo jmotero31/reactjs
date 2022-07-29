@@ -29,6 +29,7 @@ export const useForm = (initialForm, validateForm) => {
         if(Object.keys(errors).length === 0){
             alert("Se envia pedido")
             setLoading(true)
+            alert(form.name)
             // helpHttp()
             //     .post()
             //     .then((res) => {})
