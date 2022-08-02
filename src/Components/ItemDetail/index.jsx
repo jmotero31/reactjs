@@ -45,7 +45,7 @@ const ItemsDetail = ({producto}) => {
       {!cantidad ?
         <ItemCount agregar={confirmacion} stock={producto.stock}/>
         :
-        <button onClick={terminar}>Terminar Compra</button>
+        <button onClick={terminar} className="buttonAddCart">Terminar Compra</button>
       }
     </Card>
   </div>

@@ -1,20 +1,23 @@
 
+import { useContext, useEffect } from 'react';
 import { useForm } from '../Components/Hooks/useForm'
+import pedido from '../firebase/pedido';
 import './styles.css'
+import { Shop } from '../../src/Contex/ShopContext'
 
 const initialForm = {
   name: "",
   email: "",
   emaildos: "",
-  subject: "",
-  comments: "",
+  phone: "",
+  address: "",
 };
 
 const validateForm = (form) =>{
   let errors={}
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/
   let regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-  let regexComments = /^.{1,255}$/
+  let regexaddress = /^.{1,255}$/
 
   if(!form.name){
     errors.name = "El campo 'Nombre' es requerido"
@@ -34,36 +37,57 @@ const validateForm = (form) =>{
     errors.emaildos = "Verificar correos"
   }
 
-  if(!form.subject){
-    errors.subject = "El campo 'Asunto' es requerido"
+  if(!form.phone){
+    errors.phone = "El campo 'Telefono' es requerido"
+    
+  }else if(form.phone.length < 8){
+    errors.phone = "El numero debe tener al menos 10 digitos"
+    
   }
 
-  if(!form.comments){
-    errors.comments = "El campo 'Comentario' es requerido"
-  }else if(!regexComments.test(form.comments)){
-    errors.comments = "El campo 'Comentario' no debe exceder los 255 cararteres"
+  if(!form.address){
+    errors.address = "El campo 'Comentario' es requerido"
+  }else if(!regexaddress.test(form.address)){
+    errors.address = "El campo 'Dirección' no debe exceder los 255 cararteres"
   }
 
   return errors
 }
 
+
 const ContactFrom = () => {
-    const {form, 
-        errors,
-        loading,
-        response,
-        handleChange,
-        handleBlur,
-        handleSubmit
+  const {form, 
+    errors,
+    loading,
+    response,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setLoading
     } = useForm(initialForm, validateForm)
+    
+  const {cart} = useContext(Shop)
+  const total =1
 
+  useEffect(() => {
+      if(loading){
+        const pedidoConfirmado = pedido(form, cart, total)
+        
+        console.log(pedidoConfirmado)
+        alert("llegue")
+      }
+    
+      // return () => {
+      //   second
+      // }
+  }, [loading])
 
-
-
+ 
   return (
-    <div className='contenedor'>
-        <h2>Formulario de contacto</h2>
+    <>
+        <h2>Datos personales para realizar su compra</h2>
         <form onSubmit={handleSubmit} className='formulario'>
+          <label>Nombre y apellido</label>
             <input 
             className='ingreso'
             type="text" 
@@ -75,6 +99,7 @@ const ContactFrom = () => {
             required
             />
             {errors.name && <p className='validacion'>{errors.name}</p>}
+            <label>Email</label>
             <input 
             className='ingreso'
             type="email" 
@@ -86,7 +111,7 @@ const ContactFrom = () => {
             required
             />
             {errors.email && <p className='validacion'>{errors.email}</p>}
-
+            <label>Repetir Email</label>
             <input 
             className='ingreso'
             type="email" 
@@ -98,34 +123,35 @@ const ContactFrom = () => {
             required
             />
             {errors.emaildos && <p className='validacion'>{errors.emaildos}</p>}
-
+            <label>Telefono de Contacto</label>
             <input 
             className='ingreso'
-            type="text" 
-            name="subject"  
-            placeholder="Escribe tu asunto" 
+            type="number" 
+            name="phone"  
+            placeholder="xxx-xxxxxxx" 
             onBlur={handleBlur} 
             onChange={handleChange} 
-            value={form.subject} 
+            value={form.phone} 
             required
             />
-            {errors.subject && <p className='validacion'>{errors.subject}</p>}
+            {errors.subject && <p className='validacion'>{errors.phone}</p>}
+            <label>Dirección / Número / Piso / Departamento / Entre calles / Aclaración</label>
             <textarea 
             className='ingreso'
             type="text" 
-            name="comments" 
+            name="address" 
             cols="50"
             rows="5"
-            placeholder="Escribe tus comentarios" 
+            placeholder="Dirección" 
             onBlur={handleBlur} 
             onChange={handleChange} 
-            value = {form.comments}
+            value = {form.address}
             required
             />
-            {errors.comments && <p className='validacion'>{errors.comments}</p>}
-            <button className='ingreso boton'>Terminar</button>
+            {errors.comments && <p className='validacion'>{errors.address}</p>}
+            <button className='ingreso boton' onClick={()=>{setLoading(false)}}>Terminar</button>
         </form>
-    </div>
+    </>
   )
 }
 

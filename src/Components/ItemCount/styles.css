@@ -6,6 +6,55 @@
     list-style: none;
     text-decoration: none;
 }
+
+.containerItemCount {
+  background-color: blue;
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.buttonCount {
+  height: 30px;
+  width: 30px;
+  color: white;
+  outline: none;
+  border: none;
+  background-color: blue;
+  font-size: large;
+  border-radius: 10px;
+  
+}
+
+.numberCount {
+  color: white;
+  background-color: blue;
+}
+
+.buttonAddCart {
+  width: 180px;
+  height: 30px;
+  margin: 10px 0px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.buttonAddCart:hover {
+  background-color: darkblue;
+}
+
+
+
+
+
+
+
 .count-container__contador {
     display: grid;
     grid-template: 1fr / 1fr 1fr 1fr;

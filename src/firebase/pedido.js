@@ -1,11 +1,10 @@
-const pedido = (nombre,apellido, domicilio, correo, cel, cart, total) => {
+const pedido = (form, cart, total) => {
   return {
     buyer: {
-        nombre: nombre,
-        apellido: apellido,
-        domicilio: domicilio,
-        correo: correo,
-        cel: cel
+        nombre: form.name,
+        correo: form.email,
+        cel: form.phone,
+        direccion: form.address,
     },
     items: cart,
     total: total,

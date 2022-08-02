@@ -7,11 +7,11 @@ const ItemList = ({productos}) => {
   // console.log(productos.map(prod => prod.idProducto))
   
   return (
-    <div className='estilo1'>
+     <ul className='ItemListcontainer'> 
       {productos.map(prod=>{
       return <Item key={prod.idProducto} producto={prod}/>
       } )}
-    </div>
+     </ul>
   )
 }
 

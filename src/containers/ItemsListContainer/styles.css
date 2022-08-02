@@ -5,7 +5,16 @@
     list-style: none;
     text-decoration: none;
 }
-.formato {
+/* .formato {
 margin-top: 5rem;
 text-align: center;
+} */
+
+
+.loadingContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

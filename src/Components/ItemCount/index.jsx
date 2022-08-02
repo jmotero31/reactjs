@@ -26,13 +26,15 @@ const [contar, setContar] = useState(1) //hook estados guardados
       }
     }
   return (
-    <div>
-        <p >Cantidad: {contar}</p>
-        <button onClick={restar}>-</button>
-        <button onClick={sumar}>+</button>
-        <button onClick={()=>{confirmar(); resetear()}}>Agregar al Carrito</button>
-        <button onClick={resetear}>Resetear</button>
-    </div>
+    <>
+    <div className="containerItemCount">
+        <button onClick={restar} className='buttonCount'>-</button>
+        <span className="numberCount">{contar}</span>
+        <button onClick={sumar} className='buttonCount'>+</button>
+     </div>
+        <button onClick={()=>{confirmar(); resetear()}} className="buttonAddCart">Agregar al Carrito</button>
+        <button onClick={resetear} className="buttonAddCart">Resetear</button>
+    </> 
   )
 }
 

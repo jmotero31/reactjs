@@ -8,6 +8,7 @@ import './styles.css'
 import pedido from '../../firebase/pedido'
 import orden from '../../firebase/orden'
 import ContactFrom from '../../contactForm/contactForm'
+import ModalContainer from '../ModalContainer'
 import { useForm } from '../../Components/Hooks/useForm'
 
 
@@ -24,7 +25,9 @@ const Cart = () => {
   
   // console.log(cart)
   
-  
+ 
+
+ 
   
 // const totalCarrito = ()=> {
  
@@ -42,7 +45,9 @@ const volver =()=>{
 
 const confirmo = () =>{
   setConfirmar(true)
-  // const {form} = useForm()
+  
+  
+  
   // setFormulario (form)
 
 
@@ -93,7 +98,8 @@ const comprar = async() =>{
             </tbody>
             </Table>
             <button onClick={()=>{confirmo()}}>Comprar</button>
-            {confirmar && <ContactFrom/>}
+            {confirmar && <ModalContainer/>}
+            
             </>
           :
           <>

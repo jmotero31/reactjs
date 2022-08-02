@@ -2,3 +2,14 @@
     justify-content: center;
     justify-items: center;
 }
+
+.buttonAddCart {
+    width: 180px;
+    height: 30px;
+    margin: 10px 0px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+  }

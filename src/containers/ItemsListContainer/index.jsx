@@ -7,6 +7,9 @@ import './styles.css'
 // import { collection, query, getDocs } from "firebase/firestore";
 // import { db } from '../../firebase/config'
 import useFirebaseProductos from '../../Components/Hooks/useFirebaseProductos'
+import { LoadBundleTask } from 'firebase/firestore'
+import Loading from '../../Components/Loading'
+
 
 const ItemsListContainer = ({greeting}) => {
   const [productosFire, cargando, erro] = useFirebaseProductos()
@@ -66,14 +69,19 @@ const ItemsListContainer = ({greeting}) => {
   // }
  console.log(productos.length)
   return (
-    <div className='formato'>
+    <>
+    {/*  <div className='formato'> */}
         {/* {productos.length !== 0 ? */}
         {cargando !== true ?
           <ItemList productos={productosFiltrados}/> 
         :
-        <p>Cargando ...</p>
+        <div className='loadingContainer'>
+          <Loading/>
+        </div>
       }
-    </div>
+     
+    {/*  </div> */}
+    </>
     )
   }
 export default ItemsListContainer
