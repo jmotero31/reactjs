@@ -46,12 +46,7 @@ const volver =()=>{
 
 const confirmo = () =>{
   setConfirmar(true)
-  
-  
-  
   // setFormulario (form)
-
-
 }
 
 
@@ -99,7 +94,7 @@ const comprar = async() =>{
             </tbody>
             </Table>
             <button onClick={()=>{confirmo()}}>Comprar</button>
-            {confirmar && <ModalContainer total={total} setCart={setCart}/>}
+            {confirmar && <ModalContainer total={total} setCart={setCart} setConfirmar={setConfirmar}/>}
             
             </>
           :
