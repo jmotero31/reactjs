@@ -4,6 +4,7 @@ import { useForm } from '../Components/Hooks/useForm'
 import pedido from '../firebase/pedido';
 import './styles.css'
 import { Shop } from '../../src/Contex/ShopContext'
+import orden from '../firebase/orden';
 
 const initialForm = {
   name: "",
@@ -55,7 +56,7 @@ const validateForm = (form) =>{
 }
 
 
-const ContactFrom = () => {
+const ContactFrom = ({total}) => {
   const {form, 
     errors,
     loading,
@@ -67,14 +68,17 @@ const ContactFrom = () => {
     } = useForm(initialForm, validateForm)
     
   const {cart} = useContext(Shop)
-  const total =1
-
+  
+    
   useEffect(() => {
       if(loading){
         const pedidoConfirmado = pedido(form, cart, total)
-        
-        console.log(pedidoConfirmado)
-        alert("llegue")
+        // console.log(cart)
+        // console.log(pedidoConfirmado)
+        // alert("llegue")
+        // alert(total)
+        orden(cart, pedidoConfirmado)
+
       }
     
       // return () => {

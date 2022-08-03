@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, writeBatch} from "firebase/firestore"
 import { db } from "../firebase/config"
 
-const orden = (cart, pedidoConfirmado, ide) => {
+const orden = (cart, pedidoConfirmado) => {
     console.log("Guardar orden");
     console.log(cart);
     console.log(pedidoConfirmado);

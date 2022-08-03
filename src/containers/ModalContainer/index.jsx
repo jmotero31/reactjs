@@ -4,16 +4,17 @@ import ContactFrom from '../../contactForm/contactForm'
 
 
 
-const ModalContainer = () => {
+const ModalContainer = ({total}) => {
     const [isOpenModal1, openModal1, closeModal1] = useModal(true)
     // const [isOpenModal2, openModal2, closeModal2] = useModal(false)
-
+    
+  
   return (
     <div>
         {/* <button onClick={openModal1}>Boton</button> */}
         <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
             
-            <ContactFrom ></ContactFrom>
+            <ContactFrom total={total}></ContactFrom>
 
         </Modal>
     </div>
