@@ -94,7 +94,7 @@ const comprar = async() =>{
             </tbody>
             </Table>
             <button onClick={()=>{confirmo()}}>Comprar</button>
-            {confirmar && <ModalContainer total={total} setCart={setCart} setConfirmar={setConfirmar}/>}
+            {confirmar && <ModalContainer total={total} setCart={setCart} setConfirmar={setConfirmar} volver={volver} />}
             
             </>
           :

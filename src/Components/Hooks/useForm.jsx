@@ -28,7 +28,7 @@ export const useForm = (initialForm, validateForm) => {
         setErros(validateForm(form))
         
         if(Object.keys(errors).length === 0){
-            alert("Se envia pedido")
+            // alert("Se envia pedido")
             setLoading(true)
             setResponse(form)
 

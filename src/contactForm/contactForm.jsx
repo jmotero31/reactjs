@@ -5,7 +5,7 @@ import pedido from '../firebase/pedido';
 import './styles.css'
 import { Shop } from '../../src/Contex/ShopContext'
 import orden from '../firebase/orden';
-import Button from 'react-bootstrap/Button';
+import Loading from '../Components/Loading';
 
 const initialForm = {
   name: "",
@@ -57,7 +57,7 @@ const validateForm = (form) =>{
 }
 
 
-const ContactFrom = ({total, closeModal1, setCart}) => {
+const ContactFrom = ({total, closeModal1, setCart, volver}) => {
   const {form, 
     errors,
     loading,
@@ -78,15 +78,8 @@ const ContactFrom = ({total, closeModal1, setCart}) => {
         // console.log(pedidoConfirmado)
         // alert("llegue")
         // alert(total)
-        orden(cart, pedidoConfirmado, {closeModal1, setCart})
-        
-        
-
+        orden(cart, pedidoConfirmado, {closeModal1, setCart, volver})
       }
-    
-      // return () => {
-      //   second
-      // }
   }, [loading])
 
  
@@ -156,10 +149,12 @@ const ContactFrom = ({total, closeModal1, setCart}) => {
             required
             />
             {errors.address && <p className='validacion'>{errors.address}</p>}
-            <button className='ingreso boton' onClick={()=>{setLoading(false)}}>Terminar</button>
+            <button className='ingreso boton'>Terminar</button>
+            {loading && <Loading/>}
+
         </form>
     </>
   )
 }
-
+// onClick={()=>{setLoading(false)}}
 export default ContactFrom
