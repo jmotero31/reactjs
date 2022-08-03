@@ -5,6 +5,7 @@ import pedido from '../firebase/pedido';
 import './styles.css'
 import { Shop } from '../../src/Contex/ShopContext'
 import orden from '../firebase/orden';
+import Button from 'react-bootstrap/Button';
 
 const initialForm = {
   name: "",
@@ -56,7 +57,7 @@ const validateForm = (form) =>{
 }
 
 
-const ContactFrom = ({total}) => {
+const ContactFrom = ({total, closeModal1, setCart}) => {
   const {form, 
     errors,
     loading,
@@ -77,7 +78,9 @@ const ContactFrom = ({total}) => {
         // console.log(pedidoConfirmado)
         // alert("llegue")
         // alert(total)
-        orden(cart, pedidoConfirmado)
+        orden(cart, pedidoConfirmado, {closeModal1, setCart})
+        
+        
 
       }
     
@@ -89,7 +92,7 @@ const ContactFrom = ({total}) => {
  
   return (
     <>
-        <h2>Datos personales para realizar su compra</h2>
+        <h2>Datos personales</h2>
         <form onSubmit={handleSubmit} className='formulario'>
           <label>Nombre y apellido</label>
             <input 
@@ -138,7 +141,7 @@ const ContactFrom = ({total}) => {
             value={form.phone} 
             required
             />
-            {errors.subject && <p className='validacion'>{errors.phone}</p>}
+            {errors.phone && <p className='validacion'>{errors.phone}</p>}
             <label>Dirección / Número / Piso / Departamento / Entre calles / Aclaración</label>
             <textarea 
             className='ingreso'
@@ -146,13 +149,13 @@ const ContactFrom = ({total}) => {
             name="address" 
             cols="50"
             rows="5"
-            placeholder="Dirección" 
+            placeholder="Complete según la referencia" 
             onBlur={handleBlur} 
             onChange={handleChange} 
             value = {form.address}
             required
             />
-            {errors.comments && <p className='validacion'>{errors.address}</p>}
+            {errors.address && <p className='validacion'>{errors.address}</p>}
             <button className='ingreso boton' onClick={()=>{setLoading(false)}}>Terminar</button>
         </form>
     </>

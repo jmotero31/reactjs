@@ -10,6 +10,7 @@ import orden from '../../firebase/orden'
 import ContactFrom from '../../contactForm/contactForm'
 import ModalContainer from '../ModalContainer'
 import { useForm } from '../../Components/Hooks/useForm'
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -83,7 +84,7 @@ const comprar = async() =>{
                 <td>{prod.title}</td>
                 <td>{prod.price}</td>
                 <td>{prod.cant * prod.price}</td>
-                <td><button onClick={() => remover(prod.id)} style={{color: 'beige'}}> X </button></td>
+                <td><Button onClick={() => remover(prod.id)} id="col"> X </Button></td>
 
               </tr>
             })
@@ -93,18 +94,18 @@ const comprar = async() =>{
                 <td style={{color: 'beige'}}>TOTAL</td>
                 <td colSpan={2}></td>
                 <td style={{color: 'beige'}}>{total}</td>
-                <td><button onClick={()=>setCart([])} style={{color: 'beige', background: 'rgb(78, 77, 77)'}}>Vaciar</button></td>
+                <td><Button onClick={()=>setCart([])}>Vaciar</Button></td>
               </tr>
             </tbody>
             </Table>
             <button onClick={()=>{confirmo()}}>Comprar</button>
-            {confirmar && <ModalContainer total={total}/>}
+            {confirmar && <ModalContainer total={total} setCart={setCart}/>}
             
             </>
           :
           <>
           <h1>Carrtio Vacio</h1>
-          <button onClick={volver}>Volver</button>
+          <Button onClick={volver}>Volver</Button>
           </>
         }
       </div>

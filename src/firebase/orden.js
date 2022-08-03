@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, writeBatch} from "firebase/firestore"
 import { db } from "../firebase/config"
 
-const orden = (cart, pedidoConfirmado) => {
+const orden = (cart, pedidoConfirmado, {closeModal1, setCart}) => {
     console.log("Guardar orden");
     console.log(cart);
     console.log(pedidoConfirmado);
@@ -36,6 +36,9 @@ const orden = (cart, pedidoConfirmado) => {
                     //Recién hacemos el commit una vez que se genera la order
                     batch.commit().then(() => {
                         alert("Se genero la order con id: " + id)
+                        closeModal1()
+                        setCart([])
+                      
                       
                     })
                 }).catch((err) => {

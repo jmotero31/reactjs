@@ -21,9 +21,10 @@
     min-width: 320px;
     max-width: 480px;
     min-height: 200px;
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: rgb(75, 173, 173);
+    border-radius: 2rem;
 }
 
 .modal-close{

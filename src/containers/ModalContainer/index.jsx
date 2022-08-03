@@ -4,7 +4,7 @@ import ContactFrom from '../../contactForm/contactForm'
 
 
 
-const ModalContainer = ({total}) => {
+const ModalContainer = ({total, setCart}) => {
     const [isOpenModal1, openModal1, closeModal1] = useModal(true)
     // const [isOpenModal2, openModal2, closeModal2] = useModal(false)
     
@@ -12,10 +12,8 @@ const ModalContainer = ({total}) => {
   return (
     <div>
         {/* <button onClick={openModal1}>Boton</button> */}
-        <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-            
-            <ContactFrom total={total}></ContactFrom>
-
+        <Modal isOpen={isOpenModal1} closeModal={closeModal1}>    
+            <ContactFrom total={total} closeModal1={closeModal1} setCart={setCart}></ContactFrom>
         </Modal>
     </div>
   )
