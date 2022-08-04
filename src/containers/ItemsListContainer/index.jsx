@@ -7,7 +7,6 @@ import './styles.css'
 // import { collection, query, getDocs } from "firebase/firestore";
 // import { db } from '../../firebase/config'
 import useFirebaseProductos from '../../Components/Hooks/useFirebaseProductos'
-import { LoadBundleTask } from 'firebase/firestore'
 import Loading from '../../Components/Loading'
 
 
@@ -51,27 +50,17 @@ const ItemsListContainer = ({greeting}) => {
 //  }, []) 
 
  useEffect(() => {
-
   if (parametro?.categoryId){
     const filtrados = productos.filter(produc => produc.category === parametro.categoryId)
     setProductosFiltrados(filtrados)
   }else{
     setProductosFiltrados(productos)
   }
-
  }, [parametro, productos])
  
 
-// Muestra valor de agregar al carrito
-  // const onAdd =(contar)=>{
-  //   alert('Valor ' + contar) 
-
-  // }
- console.log(productos.length)
   return (
     <>
-    {/*  <div className='formato'> */}
-        {/* {productos.length !== 0 ? */}
         {cargando !== true ?
           <ItemList productos={productosFiltrados}/> 
         :
@@ -79,8 +68,6 @@ const ItemsListContainer = ({greeting}) => {
           <Loading/>
         </div>
       }
-     
-    {/*  </div> */}
     </>
     )
   }

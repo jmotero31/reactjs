@@ -5,5 +5,4 @@ const getCollection = () => {
     <div>getCollection</div>
   )
 }
-
 export default getCollection

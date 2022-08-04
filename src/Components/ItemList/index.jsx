@@ -3,8 +3,6 @@ import Item from '../Item'
 import './styles.css'
 
 const ItemList = ({productos}) => {
-
-  // console.log(productos.map(prod => prod.idProducto))
   
   return (
      <ul className='ItemListcontainer'> 

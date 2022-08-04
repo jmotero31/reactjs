@@ -7,7 +7,6 @@ const ItemCount = ({agregar, stock}) => {
 const [contar, setContar] = useState(1) //hook estados guardados
  
 
-
     function sumar() {
     contar < stock ? setContar(contar + 1) : swal("Importante", "Stock disponible:  " + stock, "info")
   }

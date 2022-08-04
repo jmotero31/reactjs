@@ -152,12 +152,9 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
                 :
                 (<div className="iu"><button className='buttonAddCart'>Terminar</button></div>)
               }
-              
-            
-
         </form>
     </>
   )
 }
-// onClick={()=>{setLoading(false)}}
+
 export default ContactFrom

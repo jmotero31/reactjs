@@ -29,22 +29,6 @@ return (
   </Card.Body>
 </Card>
 </li>
-
-
-  // <li className='estilo1'>
-  //   <Card style={{ width: '18rem', height: '30rem', padding: '1rem'}}  onClick = {handledetail}>
-  //     <Card.Img variant="top" src={producto.image} style={{ width: '100%', height: '220px'}}/>
-      
-  //       <Card.Title>{producto.title}</Card.Title>
-  //     {/* <Card.Body>
-
-  //     </Card.Body> */}
-  //       <ListGroupItem>{producto.price}</ListGroupItem>
-  //     {/* <ListGroup >
-        
-  //     </ListGroup> */}
-  //   </Card>
-  // </li>
   )
 }
 export default Item

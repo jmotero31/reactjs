@@ -9,22 +9,13 @@ const ShopProvider = ({children}) => {
 
 const agregarProducto = (producto, cantidad) => {
 
-  // console.log(producto, cantidad)
-
   const repetido = buscar(producto)
-  
-  // console.log(repetido)
-  // console.log(cart)
 
   if(repetido){
       repetido.cant += cantidad
-      // console.log(repetido)
-      // console.log(cart)
       setCart([...cart])
-      // console.log(cart)
     }else{
       setCart([...cart, {...producto, cant: cantidad}])
-      // console.log(cart)
     }
 }
 

@@ -1,5 +1,4 @@
 import './styles.css'
-import Button from 'react-bootstrap/Button';
 
 const modal = ({children, isOpen, closeModal}) => {
     const handleModalContainerClick = e => e.stopPropagation()
@@ -9,7 +8,6 @@ const modal = ({children, isOpen, closeModal}) => {
         <div className="modal-container" onClick={handleModalContainerClick}>
             <button className="modal-close buttondel" onClick={closeModal}>X</button> 
             {children}
-
         </div>
     </article>
   )
