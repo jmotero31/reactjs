@@ -43,10 +43,11 @@
     color: white;
     border: none;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: all 0.3s;
   }
 .buttonAddCart:hover {
-    background-color: rgba(10, 68, 68, 0.665);
+    color: rgba(10, 68, 68, 0.665);
+    
 }
 .ui{
     display: flex;

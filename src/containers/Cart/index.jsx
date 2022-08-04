@@ -104,8 +104,8 @@ const comprar = async() =>{
             </>
           :
           <>
-          <h1>Carrito Vacio</h1>
-          <button onClick={volver}>Volver</button>
+          <h2 className='car'>Carrito Vacio</h2>
+          <button onClick={volver} className="buttonAddCart">Volver</button>
           </>
         }
       </div>

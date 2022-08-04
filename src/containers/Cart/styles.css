@@ -35,6 +35,12 @@
     border-radius: 10px;
     transition: 0.3s;
 }
+.car{
+    color: rgba(73, 177, 177, 0.665);
+    font-size: 120%;
+    -webkit-text-stroke-width: medium;
+    margin-top: 0.6rem;
+}
 
 @media (max-width:768px) {
     .cartContainer{

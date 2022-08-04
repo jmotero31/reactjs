@@ -85,9 +85,9 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
  
   return (
     <>
-        <h2>Datos personales</h2>
+        <h3 className='h'>Datos personales</h3>
         <form onSubmit={handleSubmit} className='formulario'>
-          <label>Nombre y apellido</label>
+          <label className='labe'>Nombre y Apellido</label>
             <input 
             className='ingreso'
             type="text" 
@@ -98,8 +98,8 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
             value={form.name} 
             required
             />
-            {errors.name && <p className='validacion'>{errors.name}</p>}
-            <label>Email</label>
+            {errors.name && <text className='validacion'>{errors.name}</text>}
+            <label className='labe'>Email</label>
             <input 
             className='ingreso'
             type="email" 
@@ -110,8 +110,8 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
             value={form.email} 
             required
             />
-            {errors.email && <p className='validacion'>{errors.email}</p>}
-            <label>Repetir Email</label>
+            {errors.email && <text className='validacion'>{errors.email}</text>}
+            <label className='labe'>Repetir Email</label>
             <input 
             className='ingreso'
             type="email" 
@@ -122,8 +122,8 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
             value={form.emaildos} 
             required
             />
-            {errors.emaildos && <p className='validacion'>{errors.emaildos}</p>}
-            <label>Telefono de Contacto</label>
+            {errors.emaildos && <text className='validacion'>{errors.emaildos}</text>}
+            <label className='labe'>Telefono de Contacto</label>
             <input 
             className='ingreso'
             type="number" 
@@ -134,23 +134,29 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
             value={form.phone} 
             required
             />
-            {errors.phone && <p className='validacion'>{errors.phone}</p>}
-            <label>Dirección / Número / Piso / Departamento / Entre calles / Aclaración</label>
+            {errors.phone && <text className='validacion'>{errors.phone}</text>}
+            <label className='labe'>Dirección / Número / Depto / Detalles</label>
             <textarea 
             className='ingreso'
             type="text" 
             name="address" 
             cols="50"
-            rows="5"
+            rows="3"
             placeholder="Complete según la referencia" 
             onBlur={handleBlur} 
             onChange={handleChange} 
             value = {form.address}
             required
             />
-            {errors.address && <p className='validacion'>{errors.address}</p>}
-            <button className='ingreso boton'>Terminar</button>
-            {loading && <Loading/>}
+            {errors.address && <text className='validacion'>{errors.address}</text>}
+            {loading?(
+                <div className="iu"><Loading/></div>
+                )
+                :
+                (<div className="iu"><button className='buttonAddCart'>Terminar</button></div>)
+              }
+              
+            
 
         </form>
     </>
