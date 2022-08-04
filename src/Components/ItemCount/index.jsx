@@ -38,7 +38,7 @@ const [contar, setContar] = useState(1) //hook estados guardados
         <button onClick={sumar} className='buttonCount'>+</button>
      </div>
         <button onClick={()=>{confirmar(); resetear()}} className="buttonAddCart">Agregar al Carrito</button>
-        <button onClick={resetear} className="buttonAddCart">Resetear</button>
+        {/* <button onClick={resetear} className="buttonAddCart">Resetear</button> */}
     </> 
   )
 }

@@ -1,38 +1,32 @@
 import React  from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import ItemCount from '../../Components/ItemCount'
 import { Shop } from '../../Contex/ShopContext'
 import Loading from '../../Components/Loading'
 import './styles.css'
+import swal from 'sweetalert'
 
 
 const ItemsDetail = ({producto}) => {
   const navigate = useNavigate()
-
-  // console.log(producto.stock)
-  
   const [cantidad, setCantidad] = useState(0)
   const {agregarProducto} = useContext (Shop)
-  
-
-
+ 
   const confirmacion = (cant) =>{
     setCantidad (cant)
   }
+
   const terminar = () =>{
     agregarProducto(producto, cantidad)
+    swal(`${producto.title}`, "Su producto se agrego al carrito", "success");
     navigate('/cart')
   }
-  console.log(cantidad)
   
   return (
     <div key={producto.id} className='estilo'> 
     {producto.id ?(
-      
-      // <div key={producto.id} className='estilo'> 
       
         <div >
           <div className='contenedorIm'>
@@ -49,15 +43,16 @@ const ItemsDetail = ({producto}) => {
               <p ><span className='resaltar'>Precio: </span>$ {producto.price}</p>
               <p ><span className='resaltar'>Stock disponible: </span> {producto.stock}</p>
             </div>
-            
-          {!cantidad ?
+          {!cantidad?
           <div className='ui'><ItemCount agregar={confirmacion} stock={producto.stock}/></div>
           :
-          <div className='ui'><button onClick={terminar} className="buttonAddCart">Terminar Compra</button></div>
+          <>
+            <div className='ui'><button onClick={terminar} className="buttonAddCart">Confirmar</button></div>
+            <div className='ui'><button onClick={()=>{confirmacion(0)}} className="buttonAddCart">Volver</button></div>
+          </>
         }
           </div>
         </div>
-    // </div>
     )
   :
   (

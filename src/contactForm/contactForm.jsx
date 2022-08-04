@@ -74,10 +74,6 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
   useEffect(() => {
       if(loading){
         const pedidoConfirmado = pedido(form, cart, total)
-        // console.log(cart)
-        // console.log(pedidoConfirmado)
-        // alert("llegue")
-        // alert(total)
         orden(cart, pedidoConfirmado, {closeModal1, setCart, volver})
       }
   }, [loading])
@@ -86,6 +82,7 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
   return (
     <>
         <h3 className='h'>Datos personales</h3>
+        <br />
         <form onSubmit={handleSubmit} className='formulario'>
           <label className='labe'>Nombre y Apellido</label>
             <input 

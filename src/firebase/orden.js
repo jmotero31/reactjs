@@ -37,7 +37,7 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
                     //Recién hacemos el commit una vez que se genera la order
                     batch.commit().then(() => {
                         // alert("Se genero la order con id: " + id)
-                        swal("Pedido Confirmado","Orden:  " + id, "success");
+                        swal(`${producto.name} - Pedido Confirmado`,"Orden N°:  " + id, "success");
                         closeModal1()
                         setCart([])
                         setTimeout(() => {

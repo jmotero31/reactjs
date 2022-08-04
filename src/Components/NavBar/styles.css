@@ -41,7 +41,7 @@
 }
 .a:hover {
     color: rgba(73, 177, 177, 0.665) !important;
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
 }
 #blanco{
     color: blanchedalmond;
