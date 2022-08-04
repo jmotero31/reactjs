@@ -5,6 +5,7 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import ItemCount from '../../Components/ItemCount'
 import { Shop } from '../../Contex/ShopContext'
+import Loading from '../../Components/Loading'
 import './styles.css'
 
 
@@ -28,52 +29,42 @@ const ItemsDetail = ({producto}) => {
   console.log(cantidad)
   
   return (
-
-
-
     <div key={producto.id} className='estilo'> 
-    
-      <div >
-        <div className='contenedorIm'>
-          <img src={producto.image} style={{width: '220px', height: '220px'}}></img>
-        </div>
-        <br></br>
-        <div className='contenedorcont'>
-          <h4 className='categoria'>{producto.category}</h4>
-          <h2>{producto.title}</h2>
-          <text>{producto.description}</text>
-          <br></br>
-          <p className='marcar'><span className='resaltar'>Precio: </span>$ {producto.price}</p>
-          <p className='marcar'><span className='resaltar'>Stock disponible: </span> {producto.stock}</p>
-        {!cantidad ?
-        <div className='ui'><ItemCount agregar={confirmacion} stock={producto.stock}/></div>
-        :
-        <div className='ui'><button onClick={terminar} className="buttonAddCart">Terminar Compra</button></div>
-      }
-        </div>
-      </div>
+    {producto.id ?(
       
-    {/* <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={producto.image} />
-      <Card.Body>
-        <Card.Title>{producto.title}</Card.Title>
-        <Card.Text>
-        {producto.description}
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>{producto.category}</ListGroupItem>
-        <ListGroupItem>Precio: {producto.price}</ListGroupItem>
-        <ListGroupItem>Stock disponible: {producto.stock}</ListGroupItem>
-      </ListGroup>
-
-      {!cantidad ?
-        <ItemCount agregar={confirmacion} stock={producto.stock}/>
-        :
-        <button onClick={terminar} className="buttonAddCart">Terminar Compra</button>
-      }
-    </Card> */}
-  </div>
+      // <div key={producto.id} className='estilo'> 
+      
+        <div >
+          <div className='contenedorIm'>
+            <img src={producto.image} style={{width: '220px', height: '220px'}}></img>
+          </div>
+          <br></br>
+          <div className='contenedorcont'>
+            <h4 className='categoria'>{producto.category}</h4>
+            <h2>{producto.title}</h2>
+            <text>{producto.description}</text>
+            <br></br>
+            
+            <div className="marcar">
+              <p ><span className='resaltar'>Precio: </span>$ {producto.price}</p>
+              <p ><span className='resaltar'>Stock disponible: </span> {producto.stock}</p>
+            </div>
+            
+          {!cantidad ?
+          <div className='ui'><ItemCount agregar={confirmacion} stock={producto.stock}/></div>
+          :
+          <div className='ui'><button onClick={terminar} className="buttonAddCart">Terminar Compra</button></div>
+        }
+          </div>
+        </div>
+    // </div>
+    )
+  :
+  (
+    <Loading/>
+  )
+    }
+    </div>
   )
 }
 

@@ -17,7 +17,7 @@ const Item = ({producto}) => {
 
 
 return (
-  <li className='estilo1'>
+  <li className='estilo23'>
   <Card style={{ width: '18rem', height: '30rem', padding: '1rem'}}>
   <Card.Img variant="top" src={producto.image} style={{ width: '100%', height: '220px'}} />
   <Card.Body id="abajo">
