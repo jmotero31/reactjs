@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, getDoc, writeBatch} from "firebase/firestore"
-
+import swal from 'sweetalert'
 import { db } from "../firebase/config"
 
 const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
@@ -36,7 +36,8 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
                 addDoc(collection(db, 'ordenes'), pedidoConfirmado).then(({ id }) => {
                     //Recién hacemos el commit una vez que se genera la order
                     batch.commit().then(() => {
-                        alert("Se genero la order con id: " + id)
+                        // alert("Se genero la order con id: " + id)
+                        swal("Pedido Confirmado","Orden:  " + id, "success");
                         closeModal1()
                         setCart([])
                         setTimeout(() => {
@@ -54,7 +55,7 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
                 for (const producto of outOfStock) {
                     mensaje += `${producto.title}`
                 }
-                alert(`Productos fuera de stock: ${mensaje}`)
+                swal("No pudimos Procesar el pedido", `Productos fuera de stock: ${mensaje}`,"error")
             }
         })
     })
