@@ -5,6 +5,7 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import ItemCount from '../../Components/ItemCount'
 import { Shop } from '../../Contex/ShopContext'
+import './styles.css'
 
 
 const ItemsDetail = ({producto}) => {
@@ -27,8 +28,32 @@ const ItemsDetail = ({producto}) => {
   console.log(cantidad)
   
   return (
-    <div key={producto.id} className='estilo1'> 
-    <Card style={{ width: '18rem' }}>
+
+
+
+    <div key={producto.id} className='estilo'> 
+    
+      <div >
+        <div className='contenedorIm'>
+          <img src={producto.image} style={{width: '220px', height: '220px'}}></img>
+        </div>
+        <br></br>
+        <div className='contenedorcont'>
+          <h4 className='categoria'>{producto.category}</h4>
+          <h2>{producto.title}</h2>
+          <text>{producto.description}</text>
+          <br></br>
+          <p className='marcar'><span className='resaltar'>Precio: </span>$ {producto.price}</p>
+          <p className='marcar'><span className='resaltar'>Stock disponible: </span> {producto.stock}</p>
+        {!cantidad ?
+        <div className='ui'><ItemCount agregar={confirmacion} stock={producto.stock}/></div>
+        :
+        <div className='ui'><button onClick={terminar} className="buttonAddCart">Terminar Compra</button></div>
+      }
+        </div>
+      </div>
+      
+    {/* <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={producto.image} />
       <Card.Body>
         <Card.Title>{producto.title}</Card.Title>
@@ -47,7 +72,7 @@ const ItemsDetail = ({producto}) => {
         :
         <button onClick={terminar} className="buttonAddCart">Terminar Compra</button>
       }
-    </Card>
+    </Card> */}
   </div>
   )
 }

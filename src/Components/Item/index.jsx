@@ -20,12 +20,12 @@ return (
   <li className='estilo1'>
   <Card style={{ width: '18rem', height: '30rem', padding: '1rem'}}>
   <Card.Img variant="top" src={producto.image} style={{ width: '100%', height: '220px'}} />
-  <Card.Body>
+  <Card.Body id="abajo">
     <Card.Title>{producto.title}</Card.Title>
     <Card.Text>
-    {producto.price}
+    $ {producto.price}
     </Card.Text>
-    <Button variant="primary " onClick = {handledetail}>Ver más</Button>
+    <div className="iu"><button variant="primary " onClick = {handledetail} className="buttonAddCart">Ver más</button></div>
   </Card.Body>
 </Card>
 </li>

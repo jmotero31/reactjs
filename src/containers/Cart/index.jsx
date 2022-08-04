@@ -3,14 +3,13 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Shop } from '../../Contex/ShopContext'
-import Table from 'react-bootstrap/Table'
 import './styles.css'
 import pedido from '../../firebase/pedido'
 import orden from '../../firebase/orden'
 import ContactFrom from '../../contactForm/contactForm'
 import ModalContainer from '../ModalContainer'
 import { useForm } from '../../Components/Hooks/useForm'
-import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -60,47 +59,53 @@ const comprar = async() =>{
 
   return (
   
-      <div>
+      <div className='e'>
         {cart.length !== 0?
             <>
-            <Table striped bordered hover className='estilo ancho'>
-            <thead className='color1'>
+            <table striped bordered hover className='i'>
+            <thead className='o'>
               <tr>
-                <th>Cantidad</th>
-                <th>Descripción</th>
-                <th>Precio Unitario</th>
-                <th>Precio Parcial</th>
-                <th>Quitar</th>
+                <th>Producto</th>
+                <th></th>
+                <th>Cant</th>
+                <th>Subtotal</th>
+                <th></th>
               </tr>
             </thead>
+            <br></br>
+            <tbody>
             {cart.map(prod => {
-              return <tr key={prod.id} className='color2'>
-                <td>{prod.cant}</td>
+              return <tr key={prod.id} className='aa'>
+                <td ><img src={prod.image} style={{ width: '60px', height: '60px', padding: '0.1rem'}}></img></td>
                 <td>{prod.title}</td>
-                <td>{prod.price}</td>
-                <td>{prod.cant * prod.price}</td>
-                <td><Button onClick={() => remover(prod.id)} id="col"> X </Button></td>
+                <td>{prod.cant}</td>
+                <td>$ {prod.cant * prod.price}</td>
+                <td><button onClick={() => remover(prod.id)} className="buttondel"> X </button></td>
 
               </tr>
             })
             }
-            <tbody>
-              <tr className='color2'>
-                <td style={{color: 'beige'}}>TOTAL</td>
-                <td colSpan={2}></td>
-                <td style={{color: 'beige'}}>{total}</td>
-                <td><Button onClick={()=>setCart([])}>Vaciar</Button></td>
-              </tr>
             </tbody>
-            </Table>
-            <button onClick={()=>{confirmo()}}>Comprar</button>
+            <br /><br />
+            <tfoot>
+              <tr className='u'>
+                <td></td>
+                <td></td>
+                <td>TOTAL</td>
+                <td> $ {total}</td>
+                <td></td>
+              </tr>
+            </tfoot>
+            </table>
+            <button onClick={()=>{confirmo()}} className="buttonAddCart">Comprar</button>
+            <button onClick={()=>setCart([])} className="buttonAddCart">Vaciar</button>
             {confirmar && <ModalContainer total={total} setCart={setCart} setConfirmar={setConfirmar} volver={volver} />}
             
             </>
           :
           <>
-          <h1>Carrtio Vacio</h1>
-          <Button onClick={volver}>Volver</Button>
+          <h1>Carrito Vacio</h1>
+          <button onClick={volver}>Volver</button>
           </>
         }
       </div>
