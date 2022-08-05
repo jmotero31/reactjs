@@ -1,12 +1,10 @@
 import { useState } from "react"
-// import { helpHttp } from "../../utils/helpHttp"
 
 export const useForm = (initialForm, validateForm) => {
     const[form, setForm]= useState(initialForm)
     const [errors, setErros] = useState({})
     const [loading, setLoading] = useState(false)
-    const [response, setResponse] = useState(null)
-
+    
     //cambio de valores
   
     const handleChange = (e) =>{
@@ -28,10 +26,7 @@ export const useForm = (initialForm, validateForm) => {
         setErros(validateForm(form))
         
         if(Object.keys(errors).length === 0){
-            // alert("Se envia pedido")
             setLoading(true)
-            setResponse(form)
-
         }else{
             return
         }
@@ -41,7 +36,6 @@ export const useForm = (initialForm, validateForm) => {
         form,
         errors,
         loading,
-        response,
         handleChange,
         handleBlur,
         handleSubmit,

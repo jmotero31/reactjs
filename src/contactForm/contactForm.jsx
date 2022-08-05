@@ -61,7 +61,6 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
   const {form, 
     errors,
     loading,
-    response,
     handleChange,
     handleBlur,
     handleSubmit,
@@ -74,7 +73,7 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
   useEffect(() => {
       if(loading){
         const pedidoConfirmado = pedido(form, cart, total)
-        orden(cart, pedidoConfirmado, {closeModal1, setCart, volver})
+        orden(cart, pedidoConfirmado, {closeModal1, setCart, volver, form})
       }
   }, [loading])
 

@@ -17,7 +17,7 @@ function NavBar() {
             <Link to= "/category/Ropa de Mujer" className='nav-link active a' aria-current="page">Ropa de Mujer</Link>
             <Link to="/category/Ropa de Hombre" className='nav-link active a' aria-current="page">Ropa de Hombre</Link>
           </Nav>
-            <CardWidget/>
+          <CardWidget/>
         </Navbar.Collapse>
       </>
     </Navbar>

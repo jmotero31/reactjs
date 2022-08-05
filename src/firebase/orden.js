@@ -1,11 +1,10 @@
 import { addDoc, collection, doc, getDoc, writeBatch} from "firebase/firestore"
 import swal from 'sweetalert'
 import { db } from "../firebase/config"
+import { helpHttp } from "../utils/helpHttp"
 
-const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
-    console.log("Guardar orden");
-    console.log(cart);
-    console.log(pedidoConfirmado);
+const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver, form}) => {
+
     
     //Primer paso: abrir un batch
     const batch = writeBatch(db)
@@ -34,14 +33,33 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
     
             if (outOfStock.length === 0) {
                 addDoc(collection(db, 'ordenes'), pedidoConfirmado).then(({ id }) => {
+                    const formulario = {...form, numeroPedido: id}
+
                     //Recién hacemos el commit una vez que se genera la order
                     batch.commit().then(() => {
-                        swal(`${producto.name} - Pedido Confirmado`,"Orden N°:  " + id, "success");
+                        swal(`${form.name} - Pedido Confirmado`,"Orden N°:  " + id, "success");
                         closeModal1()
                         setCart([])
+
+                        helpHttp()
+                        .post("https://formsubmit.co/ajax/27dd62809e195af015f4dc7d1783b61e", {
+                            body: formulario,
+                            headers:{
+                                "Content-Type": "application/json",
+                                Accept: "application/json", 
+                            },
+                        },)
+                        .then(res=>{
+                            swal(`${form.name}`,"Orden Enviada" , "success");
+                         })
+                         .catch(error =>{
+                            swal(`${form.name}`,"Orden NO Enviada" , "error");
+                        })
+
                         setTimeout(() => {
                             volver()
-                        }, 4000); 
+                        }, 5000); 
+
                     })
                 }).catch((err) => {
                     console.log(`Error: ${err.message}`);
@@ -51,8 +69,10 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver}) => {
                 let mensaje = ''
                 for (const producto of outOfStock) {
                     mensaje += `${producto.title}`
-                }
-                swal("No pudimos Procesar el pedido", `Productos fuera de stock: ${mensaje}`,"error")
+                }               
+                swal("No pudimos Procesar el pedido", `Productos fuera de stock: ${mensaje}.`,"error")
+                closeModal1()
+                setCart([])
             }
         })
     })

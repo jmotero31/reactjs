@@ -54,3 +54,16 @@
 .tamanoCarro{
     size: 10rem;   
 }
+@media(max-width: 320px){
+
+    .navbar-brand {
+        margin-right: 0rem !important;
+        font-size: 0.8rem !important;
+    }
+    .nav{
+        padding: 0rem ;
+    }
+    .navbar-toggler {
+        margin-right: 0.6rem; 
+    }
+}
