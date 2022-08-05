@@ -95,7 +95,7 @@ const Cart = () => {
             </>
           :
           <>
-          <h2 className='car'>Carrito Vacio</h2>
+          <h2 className='car'>Seguir comprando</h2>
           <button onClick={volver} className="buttonAddCart">Volver</button>
           </>
         }

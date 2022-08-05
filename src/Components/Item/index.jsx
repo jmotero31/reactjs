@@ -2,7 +2,6 @@ import React from 'react'
 // import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import './styles.css'
 import {useNavigate} from "react-router-dom"
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 

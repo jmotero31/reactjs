@@ -50,7 +50,7 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver, form}) => 
                             },
                         },)
                         .then(res=>{
-                            swal(`${form.name}`,"Orden Enviada" , "success");
+                            swal("Orden Enviada" ,"Hemos recibido su pedido", "success");
                          })
                          .catch(error =>{
                             swal(`${form.name}`,"Orden NO Enviada" , "error");
