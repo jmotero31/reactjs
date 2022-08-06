@@ -10,7 +10,7 @@ const Item = ({producto}) => {
   const navigate = useNavigate()
 
   const handledetail= ()=>{
-    console.log("Navega hacia el detail")
+    // console.log("Navega hacia el detail")
     navigate(`/detail/${producto.id}`)
   }
 

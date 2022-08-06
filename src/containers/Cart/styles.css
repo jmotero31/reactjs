@@ -41,6 +41,16 @@
     -webkit-text-stroke-width: medium;
     margin-top: 0.6rem;
 }
+.car:hover {
+    color: rgba(10, 68, 68, 0.665);
+    font-size: 120%;
+}
+.caar{
+    color: rgba(73, 177, 177, 0.665);
+    font-size: 120%;
+    -webkit-text-stroke-width: medium;
+    margin-top: 0.6rem;
+}
 
 @media (max-width:768px) {
     .cartContainer{

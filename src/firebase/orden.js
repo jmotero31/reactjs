@@ -3,6 +3,7 @@ import swal from 'sweetalert'
 import { db } from "../firebase/config"
 import { helpHttp } from "../utils/helpHttp"
 
+
 const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver, form}) => {
 
     
@@ -28,51 +29,93 @@ const orden = (cart, pedidoConfirmado, {closeModal1, setCart, volver, form}) => 
             } else {
                 outOfStock.push(producto)
             }
-            console.log("Productos fuera de stock:");
-            console.log(outOfStock);
+            // console.log("Productos fuera de stock:");
+            // console.log(outOfStock);
     
             if (outOfStock.length === 0) {
                 addDoc(collection(db, 'ordenes'), pedidoConfirmado).then(({ id }) => {
-                    const formulario = {...form, numeroPedido: id}
 
+                    // enviar correo con todos los datos de registro
+                    let correo = {...pedidoConfirmado.buyer, NumeroPedido: id, Detalle: "Detalle del pedido"}
+                    let i = 1
+                     pedidoConfirmado.items.map(  
+                         prod =>{
+                             correo = {...correo, [`item_${i}`]: (i), [`Cantidad_${i}`]: prod.cant, [`Producto_${i}`]: prod.title}
+                             i=i+1
+                             return{}
+                         } 
+                    )
+                    correo = {...correo, Total: pedidoConfirmado.total}
                     //Recién hacemos el commit una vez que se genera la order
                     batch.commit().then(() => {
-                        swal(`${form.name} - Pedido Confirmado`,"Orden N°:  " + id, "success");
-                        closeModal1()
-                        setCart([])
+                        setTimeout(() => {
+                            swal(`${form.name} - Pedido Confirmado`,"Pedido N°:  " + id, "success");
+                            closeModal1()
+                            setCart([])
+                        }, 5000);
 
                         helpHttp()
                         .post("https://formsubmit.co/ajax/27dd62809e195af015f4dc7d1783b61e", {
-                            body: formulario,
+                            body: correo,
                             headers:{
                                 "Content-Type": "application/json",
                                 Accept: "application/json", 
                             },
                         },)
                         .then(res=>{
-                            swal("Orden Enviada" ,"Hemos recibido su pedido", "success");
-                         })
-                         .catch(error =>{
-                            swal(`${form.name}`,"Orden NO Enviada" , "error");
+                            setTimeout(() => {
+                                swal("Orden Enviada" ,"Hemos recibido su pedido", "success");
+                                volver()
+                            }, 8000); 
                         })
-
-                        setTimeout(() => {
+                        .catch(error =>{
+                            swal("Orden NO Enviada","Por favor Comunicate al XXX-XXXXXXX. Informanos el N° de pedido" + id , "error");
                             volver()
-                        }, 5000); 
-
+                        })
                     })
                 }).catch((err) => {
                     console.log(`Error: ${err.message}`);
                 })
+                
+                
             //Si tenemos productos fuera de stock al momento de generar la order avisamos al usuario
             } else {
                 let mensaje = ''
                 for (const producto of outOfStock) {
                     mensaje += `${producto.title}`
-                }               
-                swal("No pudimos Procesar el pedido", `Productos fuera de stock: ${mensaje}.`,"error")
+                } 
+
+                let faltante = {Detalle: "PRODUCTOS FALTANTES"}
+                let j = 1
+                outOfStock.map(  
+                         prod =>{
+                            faltante = {...faltante, [`item_${j}`]: (j), [`Producto_${j}`]: prod.title}
+                             j=j+1
+                             return{}
+                         } 
+                    )
+                swal(`${form.name} - No pudimos Procesar el Pedido`, `Productos fuera de stock:  ${mensaje}.`,"error")
+
+                helpHttp()
+                .post("https://formsubmit.co/ajax/27dd62809e195af015f4dc7d1783b61e", {
+                    body: faltante,
+                    headers:{
+                        "Content-Type": "application/json",
+                        Accept: "application/json", 
+                    },
+                },)
+                .then(res=>{
+                    setTimeout(() => {
+                        swal("Disculpe las molestias", "Hemos Informado el faltante", "warning");
+                        volver()
+                    }, 8000);
+                })
+                .catch(error =>{
+
+                })
                 closeModal1()
                 setCart([])
+
             }
         })
     })

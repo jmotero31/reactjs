@@ -23,7 +23,7 @@ const [contar, setContar] = useState(1) //hook estados guardados
       }
       else{
         if(stock != 0){
-          swal("Importante", "Tenemos en stock:  " + stock)
+          swal("Importante", "Tenemos en stock:  " + stock, "info")
         }else{
           swal("Lo Sentimos","Por el momento No tenemos en Stock","info")
         }

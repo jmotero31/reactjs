@@ -64,7 +64,7 @@ const ContactFrom = ({total, closeModal1, setCart, volver}) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    setLoading
+    // setLoading
     } = useForm(initialForm, validateForm)
     
   const {cart} = useContext(Shop)

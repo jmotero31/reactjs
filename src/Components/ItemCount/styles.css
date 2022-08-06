@@ -8,7 +8,6 @@
 }
 
 .containerItemCount {
-  background-color: rgba(73, 177, 177, 0.665);
   width: 180px;
   display: flex;
   flex-direction: row;
@@ -30,9 +29,10 @@
 }
 
 .numberCount {
-  color: white;
-  background-color: rgba(73, 177, 177, 0.665);
+  color: rgba(73, 177, 177, 0.665);
   width: 50px;
+  font-size: x-large;
+  font-weight: bolder;
 }
 
 .buttonAddCart {
